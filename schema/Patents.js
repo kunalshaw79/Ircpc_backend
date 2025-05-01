@@ -8,6 +8,13 @@ const committeeMemberSchema = new mongoose.Schema({
   department: { type: String, required: true }
 });
 
+const multipleInventor = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  department: { type: String, required: true },
+  comments: {type: String, required: true}
+});
+
 // Define the PDF schema
 const pdfSchema = new mongoose.Schema({
   name: String,
@@ -21,11 +28,7 @@ const patentSchema = new Schema({
   patentType: { type: String, required: true },
   fieldOfInvention: { type: String, required: true },
   detailedDescription: { type: String, required: true },
-  inventor: {
-    name: String,
-    department: String
-  },
-  comments: String,
+  inventor: [multipleInventor],
   status: {
     HOD: { type: Boolean, default: false },
     ADI: { type: Boolean, default: false },
